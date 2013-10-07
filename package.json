@@ -1,0 +1,23 @@
+{
+  "name": "ncoinbase",
+  "version": "0.0.1",
+  "description": "Coinbase API consumer",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "dependencies": {
+    "request": "2.27.x",
+    "q": "0.9.x"
+  },
+  "devDependencies": {
+    "express": "3.4.x"
+  },
+  "repository": "",
+  "keywords": [
+    "coinbase",
+    "bitcoin"
+  ],
+  "author": "Mark Percival <m@mdp.im>",
+  "license": "MIT"
+}

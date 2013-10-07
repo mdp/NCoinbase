@@ -1,0 +1,5 @@
+{
+  "id": "e42adaa232963850cfcccb79ad5b4692c2b627cb264d2d7914939f23bd350758",
+  "secret": "3fd5a7cc97d5342c5e5cc2358750dd4cb3c3e0d74b50ec69cc2c757bb07b85f3",
+  "redirect_uri": "http://localhost:4000/callback"
+}
