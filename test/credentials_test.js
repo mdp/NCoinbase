@@ -13,5 +13,13 @@ describe('Credentials', function(){
       assert.equal(credentials['access_token'], undefined);
       assert(credentials['expiresAt'] > Date.now());
     })
+    it('should handle expiration', function(){
+      var credentials = Credentials.createFromApi({
+        'access_token': '1234',
+        'refresh_token': 'abc',
+        'expires_in': '0'
+      });
+      assert(credentials.isExpired());
+    })
   })
 })

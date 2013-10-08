@@ -1,4 +1,3 @@
-
 var request = require('request'),
   Q = require('q'),
   Credentials = require('./lib/credentials').Credentials,
@@ -10,6 +9,7 @@ exports.Coinbase = Coinbase = function (config, adapter) {
   this.client_id = config.id;
   this.client_secret = config.secret;
   this.redirect_uri = config.redirect_uri;
+  this.scope = config.scope || 'all';
   this.adapter = adapter || request;
 }
 
@@ -25,8 +25,9 @@ Coinbase.prototype.getAuthorizeUrl = function (params) {
   var url = Coinbase.CONFIG.base + Coinbase.CONFIG.auth_path;
   params = params || {};
   params['response_type'] = 'code';
-  params['redirect_uri'] = this.redirect_uri;
+  params['redirect_uri'] = this.redirect_uri || params.redirect_uri;
   params['client_id'] = this.client_id;
+  params['scope'] = this.scope;
   return url + '?' + querystring.stringify(params);
 }
 
@@ -49,17 +50,16 @@ Coinbase.prototype._getToken = function (code, params, callback) {
       return false;
     }
     credentials = Credentials.createFromApi(body);
-    console.log(credentials.toJSON());
     deferred.resolve(credentials);
     if (callback) callback(null, credentials);
   });
-  return deferred;
+  return deferred.promise;
 }
 
 Coinbase.prototype.getAccessToken = function (code, params, callback) {
   var params = {
     'grant_type': 'authorization_code',
-    'code': code
+    'code': code,
   };
   return this._getToken(code, params, callback);
 }
