@@ -11,7 +11,8 @@
     "q": "0.9.x"
   },
   "devDependencies": {
-    "express": "3.4.x"
+    "express": "3.4.x",
+    "mocha": "1.13.x"
   },
   "repository": "",
   "keywords": [
